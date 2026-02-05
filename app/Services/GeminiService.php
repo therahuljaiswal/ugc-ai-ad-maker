@@ -39,7 +39,9 @@ class GeminiService
                     )
                 ]);
             } else {
-                $result = $this->client->geminiPro()->generateContent($prompt);
+                // gemini-pro is being deprecated or causing issues in some regions/API versions
+                // Use geminiFlash() for standard text generation as well
+                $result = $this->client->geminiFlash()->generateContent($prompt);
             }
             return $result->text();
         } catch (\Exception $e) {
