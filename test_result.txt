@@ -1,0 +1,7 @@
+
+   PASS  Tests\Feature\BlockedUserTest
+  ✓ blocked user cannot access dashboard                                 0.35s
+  ✓ unblocked user can access dashboard                                  0.04s
+
+  Tests:    2 passed (4 assertions)
+  Duration: 0.48s

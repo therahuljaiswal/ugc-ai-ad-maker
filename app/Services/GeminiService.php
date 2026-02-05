@@ -18,14 +18,29 @@ class GeminiService
         }
     }
 
-    public function generateContent(string $prompt)
+    public function generateContent(string $prompt, ?string $imagePath = null)
     {
         if (!$this->client) {
             return "Gemini API key not configured.";
         }
 
         try {
-            $result = $this->client->geminiPro()->generateContent($prompt);
+            if ($imagePath && file_exists(storage_path('app/public/' . $imagePath))) {
+                $fullPath = storage_path('app/public/' . $imagePath);
+                $mimeType = mime_content_type($fullPath);
+                $data = base64_encode(file_get_contents($fullPath));
+
+                // Use gemini-1.5-flash as it is multimodal and fast
+                $result = $this->client->geminiFlash()->generateContent([
+                    $prompt,
+                    new \Gemini\Data\Blob(
+                        mimeType: $mimeType,
+                        data: $data,
+                    )
+                ]);
+            } else {
+                $result = $this->client->geminiPro()->generateContent($prompt);
+            }
             return $result->text();
         } catch (\Exception $e) {
             Log::error('Gemini API Error: ' . $e->getMessage());

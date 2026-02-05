@@ -49,6 +49,26 @@
                             </div>
                         </div>
 
+                        @if(isset($ad->content['reference_images']) && count($ad->content['reference_images']) > 0)
+                        <div class="mb-6">
+                            <h3 class="text-ai-primary font-bold text-lg uppercase mb-2">Reference Images</h3>
+                            <div class="flex flex-wrap gap-4">
+                                @foreach($ad->content['reference_images'] as $imagePath)
+                                <div class="w-32 h-32 bg-black/30 rounded-xl overflow-hidden border border-white/5">
+                                    <img src="{{ Storage::url($imagePath) }}" class="w-full h-full object-cover">
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        @elseif(isset($ad->content['reference_image']))
+                        <div class="mb-6">
+                            <h3 class="text-ai-primary font-bold text-lg uppercase mb-2">Reference Image</h3>
+                            <div class="w-48 h-48 bg-black/30 rounded-xl overflow-hidden border border-white/5">
+                                <img src="{{ Storage::url($ad->content['reference_image']) }}" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        @endif
+
                         <div class="grid grid-cols-2 gap-4 mt-8">
                             <button class="py-3 bg-ai-primary text-black font-bold rounded-xl hover:bg-ai-secondary transition shadow-lg">Download Script (PDF)</button>
                             <button class="py-3 border border-ai-primary text-ai-primary font-bold rounded-xl hover:bg-ai-primary hover:text-black transition">Regenerate Scenes</button>
