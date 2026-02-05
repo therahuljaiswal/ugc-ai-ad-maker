@@ -34,7 +34,15 @@ class AdController extends Controller
             'size' => 'required|in:9:16,16:9,1:1',
             'preset_prompt_id' => 'nullable|exists:prompts,id',
             'custom_prompt' => 'nullable|string',
+            'images.*' => 'nullable|image|max:5120',
         ]);
+
+        $referenceImages = [];
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $referenceImages[] = $image->store('ads/reference', 'public');
+            }
+        }
 
         $promptContent = $request->custom_prompt;
         if ($request->preset_prompt_id) {
@@ -52,7 +60,8 @@ class AdController extends Controller
 
         Provide only valid JSON.";
 
-        $response = $gemini->generateContent($aiPrompt);
+        $firstImage = !empty($referenceImages) ? $referenceImages[0] : null;
+        $response = $gemini->generateContent($aiPrompt, $firstImage);
         $jsonStr = preg_replace('/^```json\s*|\s*```$/i', '', trim($response));
         $data = json_decode($jsonStr, true);
 
@@ -83,6 +92,7 @@ class AdController extends Controller
             'content' => [
                 'script' => $data['script'],
                 'scenes' => $scenes,
+                'reference_images' => $referenceImages,
             ],
             'status' => 'completed',
         ]);

@@ -54,17 +54,47 @@
         </div>
 
         <!-- Demo Section (9:16 size) -->
-        <section id="demo" class="py-20 bg-black/50">
+        <section id="demo" class="py-20 bg-black/50 relative overflow-hidden">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-ai-primary/50 to-transparent"></div>
             <div class="max-w-7xl mx-auto px-8 text-center">
-                <h2 class="text-3xl font-bold mb-12">See it in Action</h2>
-                <div class="flex flex-wrap justify-center gap-8">
-                    <div class="w-64 h-[450px] bg-gray-900 rounded-2xl border-4 border-dark-green flex items-center justify-center text-gray-500 overflow-hidden relative group">
-                        <span class="z-10">Product Ad Demo 1</span>
-                        <div class="absolute inset-0 bg-gradient-to-t from-ai-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+                <h2 class="text-4xl font-bold mb-4">See it in Action</h2>
+                <p class="text-gray-400 mb-16 max-w-xl mx-auto">Our AI generates high-impact videos optimized for vertical viewing platforms.</p>
+
+                <div class="flex flex-wrap justify-center gap-12">
+                    <!-- Demo Card 1 -->
+                    <div class="relative group">
+                        <div class="w-72 h-[512px] bg-gray-900 rounded-[2rem] border-[6px] border-dark-green shadow-[0_0_50px_rgba(6,78,59,0.3)] overflow-hidden flex flex-col">
+                            <div class="flex-1 bg-gradient-to-b from-gray-800 to-black flex items-center justify-center relative">
+                                <svg class="w-16 h-16 text-ai-primary/50 group-hover:scale-110 transition duration-500" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                <div class="absolute bottom-4 left-4 right-4 text-left">
+                                    <div class="h-2 w-3/4 bg-white/20 rounded mb-2"></div>
+                                    <div class="h-2 w-1/2 bg-white/10 rounded"></div>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-dark-green/20 backdrop-blur-sm border-t border-white/5">
+                                <div class="text-sm font-bold text-ai-primary">Skincare Product Ad</div>
+                                <div class="text-xs text-gray-500">TikTok Optimized (9:16)</div>
+                            </div>
+                        </div>
+                        <div class="absolute -inset-4 bg-ai-primary/5 rounded-[3rem] blur-2xl -z-10 opacity-0 group-hover:opacity-100 transition duration-700"></div>
                     </div>
-                    <div class="w-64 h-[450px] bg-gray-900 rounded-2xl border-4 border-dark-green flex items-center justify-center text-gray-500 overflow-hidden relative group">
-                        <span class="z-10">Product Ad Demo 2</span>
-                        <div class="absolute inset-0 bg-gradient-to-t from-ai-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+
+                    <!-- Demo Card 2 -->
+                    <div class="relative group mt-8 md:mt-16">
+                        <div class="w-72 h-[512px] bg-gray-900 rounded-[2rem] border-[6px] border-dark-green shadow-[0_0_50px_rgba(6,78,59,0.3)] overflow-hidden flex flex-col">
+                            <div class="flex-1 bg-gradient-to-b from-gray-800 to-black flex items-center justify-center relative">
+                                <svg class="w-16 h-16 text-ai-primary/50 group-hover:scale-110 transition duration-500" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                <div class="absolute bottom-4 left-4 right-4 text-left">
+                                    <div class="h-2 w-3/4 bg-white/20 rounded mb-2"></div>
+                                    <div class="h-2 w-1/2 bg-white/10 rounded"></div>
+                                </div>
+                            </div>
+                            <div class="p-4 bg-dark-green/20 backdrop-blur-sm border-t border-white/5">
+                                <div class="text-sm font-bold text-ai-primary">Gadget Unboxing</div>
+                                <div class="text-xs text-gray-500">Reels Optimized (9:16)</div>
+                            </div>
+                        </div>
+                        <div class="absolute -inset-4 bg-ai-primary/5 rounded-[3rem] blur-2xl -z-10 opacity-0 group-hover:opacity-100 transition duration-700"></div>
                     </div>
                 </div>
             </div>
@@ -175,9 +205,9 @@
                 <div class="text-2xl font-bold text-ai-primary mb-6 md:mb-0">UGC<span class="text-white">AI</span></div>
                 <div class="flex space-x-8 text-gray-400 text-sm">
                     <a href="/" class="hover:text-white transition">Home</a>
-                    <a href="#" class="hover:text-white transition">About</a>
-                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition">Contact Us</a>
+                    <a href="{{ route('about') }}" class="hover:text-white transition">About</a>
+                    <a href="{{ route('privacy') }}" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="{{ route('contact') }}" class="hover:text-white transition">Contact Us</a>
                 </div>
                 <div class="mt-8 md:mt-0 text-gray-500 text-sm">
                     © 2026 UGCAI. All rights reserved.
